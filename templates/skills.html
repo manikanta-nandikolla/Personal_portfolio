@@ -1,0 +1,191 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Skills - Portfolio{% endblock %}
+
+{% block content %}
+<!-- Page Header -->
+<section class="page-header">
+    <div class="container">
+        <div class="row">
+            <div class="col-12 text-center">
+                <h1 class="display-4 fw-bold text-white" data-aos="fade-down">My Skills</h1>
+                <nav aria-label="breadcrumb" data-aos="fade-up">
+                    <ol class="breadcrumb justify-content-center">
+                        <li class="breadcrumb-item"><a href="{% url 'home' %}">Home</a></li>
+                        <li class="breadcrumb-item active">Skills</li>
+                    </ol>
+                </nav>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Frontend Skills -->
+{% if frontend_skills %}
+<section class="py-5">
+    <div class="container">
+        <div class="section-title text-center mb-5" data-aos="fade-up">
+            <h2 class="display-6 fw-bold">Frontend Development</h2>
+            <div class="title-underline"></div>
+        </div>
+        <div class="row g-4">
+            {% for skill in frontend_skills %}
+            <div class="col-lg-3 col-md-4 col-sm-6" data-aos="zoom-in" data-aos-delay="{{ forloop.counter0|add:1 }}00">
+                <div class="skill-card-detailed text-center p-4">
+                    {% if skill.icon_type == "fa" %}
+                        <i class="{{ skill.icon }} fa-4x text-primary mb-3"></i>
+                    {% elif skill.icon_type == "svg" %}
+                        <img src="{{ skill.icon }} fa-8x text-primary mb-3" alt="{{ skill.name }}" width="40">
+                    {% endif %}
+                    <h5>{{ skill.name }}</h5>
+                    <div class="progress mt-3" style="height: 10px;">
+                        <div class="progress-bar bg-primary progress-bar-animated" 
+                             role="progressbar" 
+                             style="width: 0%;"
+                             data-width="{{ skill.proficiency }}%"
+                             aria-valuenow="{{ skill.proficiency }}" 
+                             aria-valuemin="0" 
+                             aria-valuemax="100">
+                        </div>
+                    </div>
+                    <p class="mt-2 mb-0"><strong>{{ skill.proficiency }}%</strong></p>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+{% endif %}
+
+<!-- Backend Skills -->
+{% if backend_skills %}
+<section class="py-5 bg-light">
+    <div class="container">
+        <div class="section-title text-center mb-5" data-aos="fade-up">
+            <h2 class="display-6 fw-bold">Backend Development</h2>
+            <div class="title-underline"></div>
+        </div>
+        <div class="row g-4">
+            {% for skill in backend_skills %}
+            <div class="col-lg-3 col-md-4 col-sm-6" data-aos="zoom-in" data-aos-delay="{{ forloop.counter0|add:1 }}00">
+                <div class="skill-card-detailed text-center p-4">
+                    {% if skill.icon_type == "fa" %}
+                        <i class="{{ skill.icon }} fa-4x text-primary mb-3"></i>
+                    {% elif skill.icon_type == "svg" %}
+                        <img src="{{ skill.icon }} fa-8x text-primary mb-3" alt="{{ skill.name }}" width="40">
+                    {% endif %}
+                    <h5>{{ skill.name }}</h5>
+                    <div class="progress mt-3" style="height: 10px;">
+                        <div class="progress-bar bg-success progress-bar-animated" 
+                             role="progressbar" 
+                             style="width: 0%;"
+                             data-width="{{ skill.proficiency }}%"
+                             aria-valuenow="{{ skill.proficiency }}" 
+                             aria-valuemin="0" 
+                             aria-valuemax="100">
+                        </div>
+                    </div>
+                    <p class="mt-2 mb-0"><strong>{{ skill.proficiency }}%</strong></p>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+{% endif %}
+
+<!-- Database Skills -->
+{% if database_skills %}
+<section class="py-5">
+    <div class="container">
+        <div class="section-title text-center mb-5" data-aos="fade-up">
+            <h2 class="display-6 fw-bold">Database & Storage</h2>
+            <div class="title-underline"></div>
+        </div>
+        <div class="row g-4">
+            {% for skill in database_skills %}
+            <div class="col-lg-3 col-md-4 col-sm-6" data-aos="zoom-in" data-aos-delay="{{ forloop.counter0|add:1 }}00">
+                <div class="skill-card-detailed text-center p-4">
+                    {% if skill.icon_type == "fa" %}
+                        <i class="{{ skill.icon }} fa-4x text-primary mb-3"></i>
+                    {% elif skill.icon_type == "svg" %}
+                        <img src="{{ skill.icon }} fa-8x text-primary mb-3" alt="{{ skill.name }}" width="40">
+                    {% endif %}
+                    <h5>{{ skill.name }}</h5>
+                    <div class="progress mt-3" style="height: 10px;">
+                        <div class="progress-bar bg-info progress-bar-animated" 
+                             role="progressbar" 
+                             style="width: 0%;"
+                             data-width="{{ skill.proficiency }}%"
+                             aria-valuenow="{{ skill.proficiency }}" 
+                             aria-valuemin="0" 
+                             aria-valuemax="100">
+                        </div>
+                    </div>
+                    <p class="mt-2 mb-0"><strong>{{ skill.proficiency }}%</strong></p>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+{% endif %}
+
+<!-- Tools & Others -->
+{% if tools_skills %}
+<section class="py-5 bg-light">
+    <div class="container">
+        <div class="section-title text-center mb-5" data-aos="fade-up">
+            <h2 class="display-6 fw-bold">Tools & Technologies</h2>
+            <div class="title-underline"></div>
+        </div>
+        <div class="row g-4">
+            {% for skill in tools_skills %}
+            <div class="col-lg-3 col-md-4 col-sm-6" data-aos="zoom-in" data-aos-delay="{{ forloop.counter0|add:1 }}00">
+                <div class="skill-card-detailed text-center p-4">
+                    <i class="{{ skill.icon }} fa-4x text-warning mb-3"></i>
+                    <h5>{{ skill.name }}</h5>
+                    <div class="progress mt-3" style="height: 10px;">
+                        <div class="progress-bar bg-warning progress-bar-animated" 
+                             role="progressbar" 
+                             style="width: 0%;"
+                             data-width="{{ skill.proficiency }}%"
+                             aria-valuenow="{{ skill.proficiency }}" 
+                             aria-valuemin="0" 
+                             aria-valuemax="100">
+                        </div>
+                    </div>
+                    <p class="mt-2 mb-0"><strong>{{ skill.proficiency }}%</strong></p>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+{% endif %}
+{% endblock %}
+
+{% block extra_js %}
+<script>
+    // Animate progress bars on scroll
+    document.addEventListener('DOMContentLoaded', function() {
+        const progressBars = document.querySelectorAll('.progress-bar');
+        
+        const animateProgress = () => {
+            progressBars.forEach(bar => {
+                const barPosition = bar.getBoundingClientRect().top;
+                const screenPosition = window.innerHeight;
+                
+                if (barPosition < screenPosition) {
+                    const width = bar.getAttribute('data-width');
+                    bar.style.width = width;
+                }
+            });
+        };
+        
+        window.addEventListener('scroll', animateProgress);
+        animateProgress(); // Initial check
+    });
+</script>
+{% endblock %}

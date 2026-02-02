@@ -1,0 +1,333 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Home - Portfolio{% endblock %}
+
+{% block content %}
+<!-- Hero Section -->
+<br>
+<br>
+<section class="hero-section" id="home">
+    <div class="hero-overlay"></div>
+    <div class="container">
+        <div class="row align-items-center min-vh-100">
+            <div class="col-lg-6" data-aos="fade-right">
+                <div class="hero-content">
+                    <h1 class="display-4 fw-bold text-white mb-3">
+                        Hi, I'm <span class="text-primary">{{ profile.name }}</span>
+                    </h1>
+                    <h2 class="text-white mb-4">
+                        <span id="typed"></span>
+                    </h2>
+                    <p class="lead text-white-50 mb-4">{{ profile.bio|truncatewords:30 }}</p>
+                    <div class="hero-buttons">
+                        <a href="{% url 'projects' %}" class="btn btn-primary btn-lg me-3">
+                            <i class="fas fa-code me-2"></i>View Projects
+                        </a>
+                        <a href="{% url 'contact' %}" class="btn btn-outline-light btn-lg">
+                            <i class="fas fa-envelope me-2"></i>Contact Me
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6" data-aos="fade-left">
+                <div class="hero-image text-center">
+                    {% if profile.profile_image %}
+                    <img src="{{ profile.profile_image.url }}" alt="{{ profile.name }}" class="img-fluid rounded-circle profile-img">
+                    {% else %}
+                    <div class="profile-placeholder">
+                        <i class="fas fa-user fa-10x text-primary"></i>
+                    </div>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="scroll-down">
+        <a href="#featured-projects">
+            <i class="fas fa-chevron-down fa-2x"></i>
+        </a>
+    </div>
+</section>
+
+<!-- Featured Projects Section -->
+<section class="py-5 bg-light" id="featured-projects">
+    <div class="container">
+        <div class="section-title text-center mb-5" data-aos="fade-up">
+            <h2 class="display-5 fw-bold">Featured Projects</h2>
+            <div class="title-underline"></div>
+            <p class="lead text-muted">Check out some of my best work</p>
+        </div>
+        <div class="row g-4">
+            {% for project in featured_projects %}
+            <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="{{ forloop.counter0|add:1 }}00">
+                <div class="project-card h-100">
+                    <div class="project-image">
+                        <img src="{{ project.image.url }}" alt="{{ project.title }}" class="img-fluid">
+                        <div class="project-overlay">
+                            <div class="project-links">
+                                {% if project.github_link %}
+                                <a href="{{ project.github_link }}" target="_blank" class="btn btn-outline-light btn-sm">
+                                    <i class="fab fa-github"></i>
+                                </a>
+                                {% endif %}
+                                {% if project.live_link %}
+                                <a href="{{ project.live_link }}" target="_blank" class="btn btn-outline-light btn-sm">
+                                    <i class="fas fa-external-link-alt"></i>
+                                </a>
+                                {% endif %}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="project-content p-4">
+                        <h4 class="mb-3">{{ project.title }}</h4>
+                        <p class="text-muted">{{ project.description|truncatewords:20 }}</p>
+                        <div class="project-tech mt-3">
+                            {% for tech in project.get_tech_list %}
+                            <span class="badge bg-primary me-2 mb-2">{{ tech }}</span>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% empty %}
+            <div class="col-12">
+                <p class="text-center text-muted">No featured projects yet.</p>
+            </div>
+            {% endfor %}
+        </div>
+        {% if featured_projects %}
+        <div class="text-center mt-5">
+            <a href="{% url 'projects' %}" class="btn btn-primary btn-lg">
+                View All Projects <i class="fas fa-arrow-right ms-2"></i>
+            </a>
+        </div>
+        {% endif %}
+    </div>
+</section>
+
+<!-- Skills Preview Section -->
+<section class="py-5">
+    <div class="container">
+        <div class="section-title text-center mb-5" data-aos="fade-up">
+            <h2 class="display-5 fw-bold">Technical Skills</h2>
+            <div class="title-underline"></div>
+            <p class="lead text-muted">My technical expertise</p>
+        </div>
+        <div class="row g-4">
+            {% for skill in skills|slice:":8" %}
+            <div class="col-lg-3 col-md-4 col-sm-6" data-aos="zoom-in" data-aos-delay="{{ forloop.counter0|add:1 }}00">
+                <div class="skill-card text-center p-4">
+                    {% if skill.icon_type == "fa" %}
+                        <i class="{{ skill.icon }} fa-3x text-primary mb-3"></i>
+                    {% elif skill.icon_type == "svg" %}
+                        <img src="{{ skill.icon }} fa-8x text-primary mb-3" alt="{{ skill.name }}" width="40">
+                    {% endif %}
+                    <h5>{{ skill.name }}</h5>
+                    <div class="progress mt-3" style="height: 8px;">
+                        <div class="progress-bar bg-primary" role="progressbar" 
+                             style="width: {{ skill.proficiency }}%;" 
+                             aria-valuenow="{{ skill.proficiency }}" 
+                             aria-valuemin="0" aria-valuemax="100">
+                        </div>
+                    </div>
+                    <small class="text-muted mt-2 d-block">{{ skill.proficiency }}%</small>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+        <div class="text-center mt-5">
+            <a href="{% url 'skills' %}" class="btn btn-outline-primary btn-lg">
+                View All Skills <i class="fas fa-arrow-right ms-2"></i>
+            </a>
+        </div>
+    </div>
+</section>
+<!-- Education Section (NEW) -->
+<section class="py-5 bg-light" id="education">
+    <div class="container">
+        <div class="section-title text-center mb-5" data-aos="fade-up">
+            <h2 class="display-5 fw-bold">Education</h2>
+            <div class="title-underline"></div>
+            <p class="lead text-muted">My academic background</p>
+        </div>
+        <div class="row g-4 justify-content-center">
+            {% for edu in education %}
+            <div class="col-lg-6 col-md-6" data-aos="fade-up" data-aos-delay="{{ forloop.counter0|add:1 }}00">
+                <div class="education-card-home p-4 h-100">
+                    <div class="education-header d-flex align-items-start mb-3">
+                        <div class="education-icon-large me-3">
+                            <i class="fas fa-graduation-cap fa-3x text-primary"></i>
+                        </div>
+                        <div class="flex-grow-1">
+                            <h4 class="mb-2">{{ edu.degree }}</h4>
+                            <h5 class="text-primary mb-2">{{ edu.institution }}</h5>
+                            <p class="text-muted mb-2">
+                                <i class="fas fa-book-open me-2"></i>{{ edu.field_of_study }}
+                            </p>
+                            <p class="mb-2">
+                                <i class="far fa-calendar-alt me-2"></i>
+                                <small class="text-muted">
+                                    {{ edu.start_date|date:"M Y" }} - 
+                                    {% if edu.end_date %}
+                                        {{ edu.end_date|date:"M Y" }}
+                                    {% else %}
+                                        Present
+                                    {% endif %}
+                                </small>
+                            </p>
+                            {% if edu.grade %}
+                            <p class="mb-0">
+                                <i class="fas fa-award me-2 text-warning"></i>
+                                <strong>Grade:</strong> <span class="text-primary">{{ edu.grade }}</span>
+                            </p>
+                            {% endif %}
+                        </div>
+                    </div>
+                    {% if edu.description %}
+                    <div class="education-description mt-3 pt-3 border-top">
+                        <p class="text-muted mb-0">{{ edu.description }}</p>
+                    </div>
+                    {% endif %}
+                </div>
+            </div>
+            {% empty %}
+            <div class="col-12">
+                <p class="text-center text-muted">No education information available.</p>
+            </div>
+            {% endfor %}
+        </div>
+        {% if education %}
+        <div class="text-center mt-5">
+            <a href="{% url 'about' %}#education-detail" class="btn btn-outline-primary btn-lg">
+                View More Details <i class="fas fa-arrow-right ms-2"></i>
+            </a>
+        </div>
+        {% endif %}
+    </div>
+</section>
+
+<!-- Certifications Section (NEW) -->
+<section class="py-5" id="certifications">
+    <div class="container">
+        <div class="section-title text-center mb-5" data-aos="fade-up">
+            <h2 class="display-5 fw-bold">Certifications</h2>
+            <div class="title-underline"></div>
+            <p class="lead text-muted">Professional certifications & achievements</p>
+        </div>
+        <div class="row g-4">
+            {% for cert in certifications|slice:":6" %}
+            <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="{{ forloop.counter0|add:1 }}00">
+                <div class="certification-card-home p-4 h-100">
+                    <div class="cert-icon-large mb-3 text-center">
+                        <i class="fas fa-certificate fa-4x text-warning"></i>
+                    </div>
+                    <div class="cert-content text-center">
+                        <h5 class="mb-3">{{ cert.name }}</h5>
+                        <p class="text-primary mb-2">
+                            <i class="fas fa-building me-2"></i>{{ cert.issuing_organization }}
+                        </p>
+                        <p class="text-muted mb-3">
+                            <i class="far fa-calendar-check me-2"></i>
+                            <small>Issued: {{ cert.issue_date|date:"M Y" }}</small>
+                        </p>
+                        {% if cert.credential_id %}
+                        <p class="mb-3">
+                            <small class="text-muted">
+                                <i class="fas fa-id-badge me-2"></i>ID: {{ cert.credential_id }}
+                            </small>
+                        </p>
+                        {% endif %}
+                        {% if cert.credential_url %}
+                        <a href="{{ cert.credential_url }}" target="_blank" 
+                           class="btn btn-sm btn-outline-primary w-100">
+                            <i class="fas fa-external-link-alt me-2"></i>Verify Certificate
+                        </a>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+            {% empty %}
+            <div class="col-12">
+                <p class="text-center text-muted">No certifications available.</p>
+            </div>
+            {% endfor %}
+        </div>
+        {% if certifications %}
+        <div class="text-center mt-5">
+            <a href="{% url 'about' %}#certifications-detail" class="btn btn-primary btn-lg">
+                View All Certifications <i class="fas fa-arrow-right ms-2"></i>
+            </a>
+        </div>
+        {% endif %}
+    </div>
+</section>
+<!-- Testimonials Section -->
+{% if testimonials %}
+<section class="py-5 bg-light">
+    <div class="container">
+        <div class="section-title text-center mb-5" data-aos="fade-up">
+            <h2 class="display-5 fw-bold">Testimonials</h2>
+            <div class="title-underline"></div>
+            <p class="lead text-muted">What people say about me</p>
+        </div>
+        <div class="row g-4">
+            {% for testimonial in testimonials %}
+            <div class="col-lg-4" data-aos="fade-up" data-aos-delay="{{ forloop.counter0|add:1 }}00">
+                <div class="testimonial-card h-100 p-4">
+                    <div class="rating mb-3">
+                        {% for i in "12345" %}
+                            {% if forloop.counter <= testimonial.rating %}
+                            <i class="fas fa-star text-warning"></i>
+                            {% else %}
+                            <i class="far fa-star text-warning"></i>
+                            {% endif %}
+                        {% endfor %}
+                    </div>
+                    <p class="testimonial-text">"{{ testimonial.testimonial }}"</p>
+                    <div class="testimonial-author d-flex align-items-center mt-4">
+                        {% if testimonial.image %}
+                        <img src="{{ testimonial.image.url }}" alt="{{ testimonial.name }}" class="rounded-circle me-3" width="50" height="50">
+                        {% else %}
+                        <div class="testimonial-avatar me-3">
+                            <i class="fas fa-user"></i>
+                        </div>
+                        {% endif %}
+                        <div>
+                            <h6 class="mb-0">{{ testimonial.name }}</h6>
+                            <small class="text-muted">{{ testimonial.position }} at {{ testimonial.company }}</small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+{% endif %}
+
+<!-- CTA Section -->
+<section class="cta-section py-5">
+    <div class="container text-center">
+        <div data-aos="zoom-in">
+            <h2 class="display-5 fw-bold text-white mb-4">Interested in working together?</h2>
+            <p class="lead text-white-50 mb-4">Let's create something amazing together!</p>
+            <a href="{% url 'contact' %}" class="btn btn-light btn-lg">
+                <i class="fas fa-paper-plane me-2"></i>Get In Touch
+            </a>
+        </div>
+    </div>
+</section>
+
+<script>
+    // Typed.js for hero section
+    document.addEventListener('DOMContentLoaded', function() {
+        var typed = new Typed('#typed', {
+            strings: ['{{ profile.title }}', 'Python Developer', 'Django Expert', 'Web Developer'],
+            typeSpeed: 50,
+            backSpeed: 50,
+            loop: true
+        });
+    });
+</script>
+{% endblock %}

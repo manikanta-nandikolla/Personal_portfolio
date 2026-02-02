@@ -1,0 +1,171 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}About - Portfolio{% endblock %}
+
+{% block content %}
+<!-- Page Header -->
+<section class="page-header">
+    <div class="container">
+        <div class="row">
+            <div class="col-12 text-center">
+                <h1 class="display-4 fw-bold text-white" data-aos="fade-down">About Me</h1>
+                <nav aria-label="breadcrumb" data-aos="fade-up">
+                    <ol class="breadcrumb justify-content-center">
+                        <li class="breadcrumb-item"><a href="{% url 'home' %}">Home</a></li>
+                        <li class="breadcrumb-item active">About</li>
+                    </ol>
+                </nav>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- About Section -->
+<section class="py-5">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-lg-5" data-aos="fade-right">
+                {% if profile.profile_image %}
+                <img src="{{ profile.profile_image.url }}" alt="{{ profile.name }}" class="img-fluid rounded shadow-lg">
+                {% endif %}
+            </div>
+            <div class="col-lg-7" data-aos="fade-left">
+                <h2 class="display-5 fw-bold mb-4">{{ profile.name }}</h2>
+                <h4 class="text-primary mb-4">{{ profile.title }}</h4>
+                <p class="lead">{{ profile.bio }}</p>
+                <div class="row mt-4">
+                    <div class="col-md-6">
+                        <ul class="list-unstyled">
+                            <li class="mb-2"><strong>Email:</strong> {{ profile.email }}</li>
+                            <li class="mb-2"><strong>Phone:</strong> {{ profile.phone }}</li>
+                        </ul>
+                    </div>
+                    <div class="col-md-6">
+                        <ul class="list-unstyled">
+                            <li class="mb-2"><strong>Location:</strong> {{ profile.location }}</li>
+                            <li class="mb-2"><strong>Available:</strong> Yes</li>
+                        </ul>
+                    </div>
+                </div>
+                {% if profile.resume %}
+                <a href="{{ profile.resume.url }}" class="btn btn-primary btn-lg mt-4" download>
+                    <i class="fas fa-download me-2"></i>Download Resume
+                </a>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Experience Section -->
+{% if experiences %}
+<section class="py-5 bg-light">
+    <div class="container">
+        <div class="section-title text-center mb-5" data-aos="fade-up">
+            <h2 class="display-5 fw-bold">Experience</h2>
+            <div class="title-underline"></div>
+        </div>
+        <div class="timeline">
+            {% for experience in experiences %}
+            <div class="timeline-item" data-aos="fade-up">
+                <div class="timeline-dot"></div>
+                <div class="timeline-content">
+                    <div class="timeline-date">
+                        {{ experience.start_date|date:"M Y" }} - 
+                        {% if experience.is_current %}
+                            Present
+                        {% else %}
+                            {{ experience.end_date|date:"M Y" }}
+                        {% endif %}
+                    </div>
+                    <h4>{{ experience.position }}</h4>
+                    <h5 class="text-primary">{{ experience.company }}</h5>
+                    <p>{{ experience.description }}</p>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+{% endif %}
+
+<!-- Education Section -->
+{% if education %}
+<section class="py-5">
+    <div class="container">
+        <div class="section-title text-center mb-5" data-aos="fade-up">
+            <h2 class="display-5 fw-bold">Education</h2>
+            <div class="title-underline"></div>
+        </div>
+        <div class="row g-4">
+            {% for edu in education %}
+            <div class="col-lg-6" data-aos="fade-up">
+                <div class="education-card p-4 h-100">
+                    <div class="d-flex align-items-start">
+                        <div class="education-icon me-3">
+                            <i class="fas fa-graduation-cap fa-2x text-primary"></i>
+                        </div>
+                        <div>
+                            <h4>{{ edu.degree }}</h4>
+                            <h5 class="text-primary">{{ edu.institution }}</h5>
+                            <p class="text-muted mb-2">{{ edu.field_of_study }}</p>
+                            <p class="mb-2">
+                                <small>{{ edu.start_date|date:"Y" }} - 
+                                {% if edu.end_date %}
+                                    {{ edu.end_date|date:"Y" }}
+                                {% else %}
+                                    Present
+                                {% endif %}
+                                </small>
+                            </p>
+                            {% if edu.grade %}
+                            <p class="mb-2"><strong>Grade:</strong> {{ edu.grade }}</p>
+                            {% endif %}
+                            {% if edu.description %}
+                            <p>{{ edu.description }}</p>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+{% endif %}
+
+<!-- Certifications Section -->
+{% if certifications %}
+<section class="py-5 bg-light">
+    <div class="container">
+        <div class="section-title text-center mb-5" data-aos="fade-up">
+            <h2 class="display-5 fw-bold">Certifications</h2>
+            <div class="title-underline"></div>
+        </div>
+        <div class="row g-4">
+            {% for cert in certifications %}
+            <div class="col-lg-4 col-md-6" data-aos="fade-up">
+                <div class="certification-card p-4 h-100">
+                    <div class="cert-icon mb-3">
+                        <i class="fas fa-certificate fa-3x text-primary"></i>
+                    </div>
+                    <h5>{{ cert.name }}</h5>
+                    <p class="text-muted mb-2">{{ cert.issuing_organization }}</p>
+                    <p class="mb-2"><small>Issued: {{ cert.issue_date|date:"M Y" }}</small></p>
+                    {% if cert.credential_id %}
+                    <p class="mb-2"><small>ID: {{ cert.credential_id }}</small></p>
+                    {% endif %}
+                    {% if cert.credential_url %}
+                    <a href="{{ cert.credential_url }}" target="_blank" class="btn btn-sm btn-outline-primary mt-2">
+                        <i class="fas fa-external-link-alt me-1"></i>View Credential
+                    </a>
+                    {% endif %}
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+{% endif %}
+{% endblock %}

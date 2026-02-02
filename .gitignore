@@ -1,0 +1,511 @@
+# ====================
+# Python
+# ====================
+
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# C extensions
+*.so
+
+# Distribution / packaging
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+share/python-wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+MANIFEST
+
+# PyInstaller
+*.manifest
+*.spec
+
+# Installer logs
+pip-log.txt
+pip-delete-this-directory.txt
+
+# Unit test / coverage reports
+htmlcov/
+.tox/
+.nox/
+.coverage
+.coverage.*
+.cache
+nosetests.xml
+coverage.xml
+*.cover
+*.py,cover
+.hypothesis/
+.pytest_cache/
+cover/
+
+# Translations
+*.mo
+*.pot
+
+# Django stuff:
+*.log
+local_settings.py
+db.sqlite3
+db.sqlite3-journal
+
+# Flask stuff:
+instance/
+.webassets-cache
+
+# Scrapy stuff:
+.scrapy
+
+# Sphinx documentation
+docs/_build/
+
+# PyBuilder
+.pybuilder/
+target/
+
+# Jupyter Notebook
+.ipynb_checkpoints
+
+# IPython
+profile_default/
+ipython_config.py
+
+# pyenv
+.python-version
+
+# pipenv
+Pipfile.lock
+
+# poetry
+poetry.lock
+
+# pdm
+.pdm.toml
+
+# PEP 582
+__pypackages__/
+
+# Celery stuff
+celerybeat-schedule
+celerybeat.pid
+
+# SageMath parsed files
+*.sage.py
+
+# Environments
+.env
+.venv
+env/
+venv/
+ENV/
+env.bak/
+venv.bak/
+
+# Spyder project settings
+.spyderproject
+.spyproject
+
+# Rope project settings
+.ropeproject
+
+# mkdocs documentation
+/site
+
+# mypy
+.mypy_cache/
+.dmypy.json
+dmypy.json
+
+# Pyre type checker
+.pyre/
+
+# pytype static type analyzer
+.pytype/
+
+# Cython debug symbols
+cython_debug/
+
+# ====================
+# Django
+# ====================
+
+# Database
+*.sqlite3
+*.db
+
+# Static files (collected)
+/staticfiles/
+/static_root/
+/static_cdn/
+
+# Media files (uploaded by users)
+/media/
+/mediafiles/
+
+# Django migrations (optional - uncomment if you want to ignore)
+# **/migrations/*.py
+# **/migrations/*.pyc
+# !**/migrations/__init__.py
+
+# Django secret key
+secret.txt
+secrets.json
+
+# Local settings
+local_settings.py
+settings_local.py
+dev_settings.py
+
+# Backup files
+*.bak
+*.backup
+*.old
+
+# ====================
+# IDEs and Editors
+# ====================
+
+# VSCode
+.vscode/
+*.code-workspace
+.history/
+
+# PyCharm
+.idea/
+*.iml
+*.iws
+*.ipr
+out/
+
+# Sublime Text
+*.tmlanguage.cache
+*.tmPreferences.cache
+*.stTheme.cache
+*.sublime-workspace
+*.sublime-project
+
+# Vim
+[._]*.s[a-v][a-z]
+[._]*.sw[a-p]
+[._]s[a-rt-v][a-z]
+[._]ss[a-gi-z]
+[._]sw[a-p]
+Session.vim
+Sessionx.vim
+.netrwhist
+*~
+tags
+[._]*.un~
+
+# Emacs
+*~
+\#*\#
+/.emacs.desktop
+/.emacs.desktop.lock
+*.elc
+auto-save-list
+tramp
+.\#*
+
+# Atom
+.atom/
+
+# Eclipse
+.settings/
+.project
+.pydevproject
+.classpath
+
+# NetBeans
+nbproject/
+build/
+nbbuild/
+dist/
+nbdist/
+.nb-gradle/
+
+# ====================
+# Operating Systems
+# ====================
+
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+Icon
+._*
+.DocumentRevisions-V100
+.fseventsd
+.Spotlight-V100
+.TemporaryItems
+.Trashes
+.VolumeIcon.icns
+.com.apple.timemachine.donotpresent
+.AppleDB
+.AppleDesktop
+Network Trash Folder
+Temporary Items
+.apdisk
+
+# Windows
+Thumbs.db
+Thumbs.db:encryptable
+ehthumbs.db
+ehthumbs_vista.db
+*.stackdump
+[Dd]esktop.ini
+$RECYCLE.BIN/
+*.cab
+*.msi
+*.msix
+*.msm
+*.msp
+*.lnk
+
+# Linux
+*~
+.fuse_hidden*
+.directory
+.Trash-*
+.nfs*
+
+# ====================
+# Project Specific
+# ====================
+
+# Logs
+logs/
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+lerna-debug.log*
+
+# Temporary files
+tmp/
+temp/
+*.tmp
+*.temp
+
+# Backup files
+backup/
+backups/
+
+# Node modules (if using any frontend build tools)
+node_modules/
+npm-debug.log
+yarn-error.log
+package-lock.json
+
+# Compiled CSS (if using preprocessors)
+*.css.map
+*.sass.map
+*.scss.map
+
+# ====================
+# Security & Secrets
+# ====================
+
+# Environment variables
+.env
+.env.local
+.env.*.local
+.env.production
+.env.development
+.env.test
+
+# Secret keys and credentials
+secrets.py
+*.pem
+*.key
+*.cert
+*.crt
+*.p12
+*.pfx
+credentials.json
+client_secret.json
+
+# AWS
+.aws/
+.elasticbeanstalk/
+
+# Google Cloud
+.gcloud/
+.config/gcloud/
+
+# ====================
+# Testing
+# ====================
+
+# Coverage reports
+.coverage
+.coverage.*
+htmlcov/
+.tox/
+coverage.xml
+*.cover
+
+# Testing databases
+test_*.db
+test.db
+
+# ====================
+# Documentation
+# ====================
+
+# Sphinx
+docs/_build/
+docs/_static/
+docs/_templates/
+
+# ====================
+# Miscellaneous
+# ====================
+
+# Archives
+*.zip
+*.tar
+*.tar.gz
+*.rar
+*.7z
+
+# Large files
+*.mp4
+*.mov
+*.avi
+*.mkv
+*.iso
+
+# Cache
+.cache/
+*.cache
+
+# Thumbnails
+thumbs/
+
+# Virtual environment markers
+pip-selfcheck.json
+
+# Redis
+dump.rdb
+
+# Celery
+celerybeat-schedule.*
+
+# Webpack
+webpack-stats.json
+
+# SQL dumps
+*.sql
+*.dump
+
+# Compressed files
+*.gz
+*.bz2
+*.xz
+
+# Editor swap files
+*.swp
+*.swo
+*~
+
+# System files
+.fuse_hidden*
+
+# ====================
+# Production Files (DO NOT COMMIT)
+# ====================
+
+# Production settings
+production_settings.py
+settings_production.py
+
+# SSL Certificates
+*.csr
+*.der
+
+# Database dumps
+*.dump
+*.sql.gz
+
+# Compiled translations
+*.mo
+
+# Minified files
+*.min.js
+*.min.css
+
+# ====================
+# Custom Additions
+# ====================
+
+# Personal notes
+notes.txt
+TODO.txt
+NOTES.md
+
+# Development files
+dev/
+development/
+
+# Old versions
+old/
+archive/
+
+# Exception: Keep important images
+!static/images/**/*.png
+!static/images/**/*.jpg
+!static/images/**/*.jpeg
+!media/default/**
+
+# User uploaded media files
+/media/profile/
+/media/projects/
+/media/testimonials/
+/media/certifications/
+/media/resume/
+
+# Keep .gitkeep files
+!.gitkeep
+
+# ====================
+# CI/CD
+# ====================
+
+# GitHub Actions
+.github/workflows/*.log
+
+# GitLab CI
+.gitlab-ci-local/
+
+# Jenkins
+.jenkins/
+
+# Travis CI
+.travis.yml.bak
+
+# ====================
+# Docker
+# ====================
+
+# Docker files (optional - uncomment if needed)
+# docker-compose.override.yml
+# .dockerignore
+
+# ====================
+# End of .gitignore
+# ====================
